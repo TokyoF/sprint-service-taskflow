@@ -11,7 +11,7 @@ services:
     environment:
       - SERVER_PORT=8095
       - DB_HOST=db_sprint
-      - DB_PORT=5432
+      - DB_PORT=8105
       - DB_NAME=db_sprint
       - DB_USERNAME=luffy
       - DB_PASSWORD=123
