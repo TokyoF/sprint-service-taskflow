@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  sprint-service:
+    container_name: sprint-service
+    image: t0ky0le/sprint-service:1.0
+    build:
+      context: .
+    ports:
+      - "8095:8095"
+    environment:
+      - SERVER_PORT=8095
+      - DB_HOST=db_sprint
+      - DB_PORT=5432
+      - DB_NAME=db_sprint
+      - DB_USERNAME=luffy
+      - DB_PASSWORD=123
+      - EUREKA_SERVER_URL=http://discovery-server:8761/eureka/
+    depends_on:
+      - db_sprint
+
+  db_sprint:
+    container_name: db_sprint
+    image: postgres:13.3
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: db_sprint
+      POSTGRES_USER: luffy
+      POSTGRES_PASSWORD: 123
+    ports:
+      - "8105:5432"
+    expose:
+      - 5432
